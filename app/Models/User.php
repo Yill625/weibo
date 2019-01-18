@@ -12,7 +12,7 @@ class User extends Authenticatable
 
 
     protected $table = 'users';
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -49,5 +49,11 @@ class User extends Authenticatable
     public function statuses()
     {
         return $this->hasMany(Status::class);
+    }
+
+    public function feed()
+    {
+        return $this->statuses()
+            ->orderBy('created_at', 'desc');
     }
 }
